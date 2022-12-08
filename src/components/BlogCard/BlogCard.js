@@ -14,7 +14,11 @@ const BlogCard = ({ blog }) => {
   return (
     <div className="card w-full bg-base-100 shadow-lg border-2 border-primary">
       <figure>
-        <img src={blog.featuredImg} alt="Shoes" />
+        <img
+          src={blog.featuredImg}
+          alt="blog_img"
+          className="h-[200px] w-full object-cover"
+        />
       </figure>
       <div className="px-4 py-5">
         <h2 className="card-title mb-2">{blog.title}</h2>

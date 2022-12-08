@@ -1,25 +1,20 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import BlogCard from "../../components/BlogCard/BlogCard";
 import Navbar from "../../components/Navbar/Navbar";
 import { checkByFirst, checkByLast } from "../../redux/actions/filterAction";
-import { TOGGLE_SORT } from "../../redux/actiontypes/actiontypes";
+import fetchBlog from "../../redux/thunk/fetchBlog";
 
 const Home = () => {
-  const [data, setData] = useState([]);
-  const { filterReducer } = useSelector((state) => state);
   const dispatch = useDispatch();
+  const { filterReducer, blogReducer } = useSelector((state) => state);
+  const data = blogReducer.blogs;
+
   let content;
 
-  console.log(filterReducer);
-
   useEffect(() => {
-    fetch("http://localhost:5000/blogs")
-      .then((res) => res.json())
-      .then((data) => setData(data.data));
-  }, []);
-
-  console.log(data);
+    dispatch(fetchBlog());
+  }, [dispatch]);
 
   if (data.length && !filterReducer.lastUpload && !filterReducer.firstUpload) {
     console.log("Triggered");

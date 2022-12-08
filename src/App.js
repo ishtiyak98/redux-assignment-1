@@ -1,4 +1,5 @@
-import { Provider } from "react-redux";
+import { useState } from "react";
+import { Provider, useSelector } from "react-redux";
 import { Route, Routes } from "react-router-dom";
 import "./App.css";
 import BlogDetails from "./pages/BlogDetails/BlogDetails";
@@ -7,9 +8,14 @@ import ReadingHistory from "./pages/ReadingHistory/ReadingHistory";
 import store from "./redux/store";
 
 function App() {
+  const [toggleDark, setToggleDark] = useState(false);
+  const state = useSelector((state) => state.themeReducer);
   return (
-    <>
-      <Provider store={store}>
+    <div>
+      <div
+        data-theme={`${state.darkMode ? "night" : "light"}`}
+        className="min-h-screen"
+      >
         <Routes>
           <Route path="/" element={<Home></Home>}></Route>
           <Route
@@ -21,8 +27,8 @@ function App() {
             element={<ReadingHistory></ReadingHistory>}
           ></Route>
         </Routes>
-      </Provider>
-    </>
+      </div>
+    </div>
   );
 }
 

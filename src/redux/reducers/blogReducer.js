@@ -1,4 +1,4 @@
-import { ADD_HISTORY } from "../actiontypes/actiontypes";
+import { ADD_HISTORY, LOAD_BLOGS } from "../actiontypes/actiontypes";
 
 const initialReducer = {
   blogs: [],
@@ -7,6 +7,11 @@ const initialReducer = {
 
 const blogReducer = (state = initialReducer, action) => {
   switch (action.type) {
+    case LOAD_BLOGS:
+      return{
+        ...state,
+        blogs: action.payload
+      }
     case ADD_HISTORY:
       const doubleCheck = state.blogHistory.find(
         (item) => item._id === action.payload._id

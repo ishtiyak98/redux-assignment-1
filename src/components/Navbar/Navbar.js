@@ -6,7 +6,9 @@ const Navbar = () => {
     <>
       <div className="navbar bg-primary text-white lg:px-20">
         <div className="navbar-start">
-          <Link to={"/"} className="btn btn-ghost normal-case text-xl">Tech-Blog</Link>
+          <Link to={"/"} className="btn btn-ghost normal-case text-xl">
+            Tech-Blog
+          </Link>
         </div>
 
         <div className="navbar-end">
@@ -15,7 +17,9 @@ const Navbar = () => {
               <li>
                 <Link to={"/"}>Home</Link>
               </li>
-
+              <li>
+                <Link to={"/history"}>Reading History</Link>
+              </li>
               <li>
                 <a>Dashboard</a>
               </li>

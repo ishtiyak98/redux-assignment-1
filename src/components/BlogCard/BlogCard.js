@@ -22,7 +22,9 @@ const BlogCard = ({ blog }) => {
       </figure>
       <div className="px-4 py-5">
         <h2 className="card-title mb-2">{blog.title}</h2>
-        <div className="mb-4">{parser(blog.content.slice(0, 121) + "...")}</div>
+        <div className="mb-4">
+          {parser(blog?.content?.slice(0, 121) + "...")}
+        </div>
         <div className="space-x-2 mb-5 flex justify-center">
           {blog.tags.map((item) => (
             <button

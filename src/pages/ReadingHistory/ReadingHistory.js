@@ -1,10 +1,12 @@
 import React from "react";
 import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import Navbar from "../../components/Navbar/Navbar";
 
 const ReadingHistory = () => {
   const state = useSelector((state) => state.blogReducer);
-  console.log(state);
+  const navigate = useNavigate();
+  
   return (
     <>
       <Navbar></Navbar>
@@ -22,10 +24,19 @@ const ReadingHistory = () => {
             <tbody>
               {state.blogHistory.map((item, index) => (
                 <tr key={index} className="hover">
-                  <th>{index+1}</th>
+                  <th>{index + 1}</th>
                   <td>{item.title}</td>
                   <td>{item.author}</td>
-                  <td><button className="btn btn-error btn-xs">DELETE</button></td>
+                  <td>
+                    <button
+                      className="btn btn-success btn-xs"
+                      onClick={() => {
+                        navigate(`/post/${item._id}`);
+                      }}
+                    >
+                      read again
+                    </button>
+                  </td>
                 </tr>
               ))}
             </tbody>

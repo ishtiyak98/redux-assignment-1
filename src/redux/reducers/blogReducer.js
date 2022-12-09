@@ -1,4 +1,8 @@
-import { ADD_HISTORY, LOAD_BLOGS } from "../actiontypes/actiontypes";
+import {
+  ADD_CONTENT,
+  ADD_HISTORY,
+  GET_CONTENT,
+} from "../actiontypes/actiontypes";
 
 const initialReducer = {
   blogs: [],
@@ -7,17 +11,21 @@ const initialReducer = {
 
 const blogReducer = (state = initialReducer, action) => {
   switch (action.type) {
-    case LOAD_BLOGS:
-      return{
+    case GET_CONTENT:
+      return {
         ...state,
-        blogs: action.payload
-      }
+        blogs: action.payload,
+      };
+    case ADD_CONTENT:
+      return {
+        ...state,
+      };
     case ADD_HISTORY:
       const doubleCheck = state.blogHistory.find(
         (item) => item._id === action.payload._id
       );
       if (doubleCheck) {
-        return {    
+        return {
           ...state,
           blogHistory: [
             ...state.blogHistory.filter(

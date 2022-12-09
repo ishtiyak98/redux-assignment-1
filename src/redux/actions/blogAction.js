@@ -1,4 +1,8 @@
-import { ADD_HISTORY, LOAD_BLOGS } from "../actiontypes/actiontypes";
+import {
+  ADD_CONTENT,
+  ADD_HISTORY,
+  GET_CONTENT,
+} from "../actiontypes/actiontypes";
 
 export const addHistory = (data) => {
   return {
@@ -9,7 +13,14 @@ export const addHistory = (data) => {
 
 export const loadBlogs = (data) => {
   return {
-    type: LOAD_BLOGS,
+    type: GET_CONTENT,
+    payload: data,
+  };
+};
+
+export const addBlogState = (data) => {
+  return {
+    type: ADD_CONTENT,
     payload: data,
   };
 };

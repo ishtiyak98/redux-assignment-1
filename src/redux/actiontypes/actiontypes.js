@@ -8,4 +8,7 @@ export const ADD_HISTORY = "ADD_HISTORY";
 export const TOGGLE_THEME = "TOGGLE_THEME";
 
 //---fetch_data---
-export const LOAD_BLOGS = "LOAD_BLOGS";
+export const GET_CONTENT = "GET_CONTENT";
+
+//---add_data---
+export const ADD_CONTENT = "ADD_CONTENT";

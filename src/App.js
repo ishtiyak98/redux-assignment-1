@@ -3,12 +3,13 @@ import { Provider, useSelector } from "react-redux";
 import { Route, Routes } from "react-router-dom";
 import "./App.css";
 import BlogDetails from "./pages/BlogDetails/BlogDetails";
+import AddBlog from "./pages/Dashboard/AddBlog";
+import DashHome from "./pages/Dashboard/DashHome";
+import ListAll from "./pages/Dashboard/ListAll";
 import Home from "./pages/Home/Home";
 import ReadingHistory from "./pages/ReadingHistory/ReadingHistory";
-import store from "./redux/store";
 
 function App() {
-  const [toggleDark, setToggleDark] = useState(false);
   const state = useSelector((state) => state.themeReducer);
   return (
     <div>
@@ -26,6 +27,10 @@ function App() {
             path="/history"
             element={<ReadingHistory></ReadingHistory>}
           ></Route>
+          <Route path="/dashboard" element={<DashHome></DashHome>}>
+            <Route index element={<ListAll></ListAll>}></Route>
+            <Route path="add-blog" element={<AddBlog></AddBlog>}></Route>
+          </Route>
         </Routes>
       </div>
     </div>

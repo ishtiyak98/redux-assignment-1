@@ -4,6 +4,7 @@ import {
   DELETE_CONTENT,
   GET_BLOG,
   GET_CONTENT,
+  UPDATE_CONTENT,
 } from "../actiontypes/actiontypes";
 
 const initialReducer = {
@@ -29,6 +30,11 @@ const blogReducer = (state = initialReducer, action) => {
         blogs: state.blogs.filter((item) => item._id !== action.payload),
       };
     case GET_BLOG:
+      return {
+        ...state,
+        blogPost: { ...action.payload },
+      };
+    case UPDATE_CONTENT:
       return {
         ...state,
         blogPost: { ...action.payload },

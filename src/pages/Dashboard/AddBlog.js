@@ -74,9 +74,10 @@ const AddBlog = () => {
       bookmarked,
       tags,
     };
-    
+
     dispatch(addBlog(blog));
     e.target.reset();
+    setValue("");
   };
 
   return (

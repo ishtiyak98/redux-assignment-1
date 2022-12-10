@@ -1,11 +1,26 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import ReactQuill from "react-quill";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { useParams } from "react-router-dom";
+import getOneBlog from "../../redux/thunk/getOneBlog";
+import updateBlog from "../../redux/thunk/updateBlog";
 
 const UpdateBlog = () => {
-  const [value, setValue] = useState("");
   const dispatch = useDispatch();
-  const currentDate = new Date();
+
+  const { _id } = useParams();
+  const blogPost = useSelector((state) => state.blogReducer.blogPost);
+  const [value, setValue] = useState(
+    blogPost.content ? blogPost.content : "back to blog-list to view"
+  );
+
+  const currentDate = new Date(
+    blogPost.postDate ? blogPost.postDate : "2022-12-02"
+  );
+
+  useEffect(() => {
+    dispatch(getOneBlog(_id));
+  }, []);
 
   const modules = {
     toolbar: [
@@ -56,9 +71,9 @@ const UpdateBlog = () => {
     const author = e.target.author.value;
     const content = value;
     const featuredImg = e.target.imageLink.value;
-    const likes = 0;
-    const comments = 0;
-    const bookmarked = 0;
+    const likes = blogPost.likes;
+    const comments = blogPost.comments;
+    const bookmarked = blogPost.bookmarked;
     const tags = [];
 
     const blog = {
@@ -72,14 +87,17 @@ const UpdateBlog = () => {
       bookmarked,
       tags,
     };
-
-    //dispatch(addBlog(blog));
+    console.log(blog);
+    dispatch(updateBlog(blogPost._id, blog));
+    e.target.defaultValue = "";
     e.target.reset();
   };
+
+  console.log(blogPost);
   return (
     <section className="px-5 py-4 lg:px-24 lg:py-10">
       <h2 className="mb-10 text-4xl font-semibold text-blue-600">
-        Edit A Blog
+        Edit A Blog {blogPost._id} / {blogPost.title}
       </h2>
 
       <form action="" onSubmit={handleSubmit} className="w-[600px]">
@@ -88,14 +106,14 @@ const UpdateBlog = () => {
             type="text"
             placeholder="Post Title"
             name="title"
+            defaultValue={blogPost.title}
             required
             className="input input-bordered input-primary w-full max-w-xs"
           />
           <input
-            type="text"
-            readOnly
+            type="date"
             name="currentDate"
-            value={currentDate.toISOString().slice(0, 10)}
+            defaultValue={currentDate.toISOString().slice(0, 10)}
             className="input input-bordered input-primary w-[170px] max-w-xs"
           />
         </div>
@@ -103,6 +121,7 @@ const UpdateBlog = () => {
           type="text"
           placeholder="Author Name"
           name="author"
+          defaultValue={blogPost.author}
           required
           className="input input-bordered mb-4 input-primary w-full max-w-xs"
         />
@@ -110,6 +129,7 @@ const UpdateBlog = () => {
           type="text"
           placeholder="Image Link"
           name="imageLink"
+          defaultValue={blogPost.featuredImg}
           required
           className="input input-bordered input-primary w-full max-w-xs"
         />
@@ -123,7 +143,7 @@ const UpdateBlog = () => {
             onChange={handleChange}
           />
         </div>
-        <input className="btn btn-primary" type="submit" value="Post" />
+        <input className="btn btn-primary" type="submit" value="Update" />
       </form>
     </section>
   );

@@ -18,3 +18,6 @@ export const DELETE_CONTENT = "DELETE_CONTENT";
 
 //---fetch_a_data---
 export const GET_BLOG = "GET_BLOG";
+
+//---Update_a_Blog---
+export const UPDATE_CONTENT = "UPDATE_CONTENT";

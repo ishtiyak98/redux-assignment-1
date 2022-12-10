@@ -31,7 +31,7 @@ function App() {
           <Route path="/dashboard" element={<DashHome></DashHome>}>
             <Route index element={<ListAll></ListAll>}></Route>
             <Route path="add-blog" element={<AddBlog></AddBlog>}></Route>
-            <Route path="edit-blog" element={<UpdateBlog></UpdateBlog>}></Route>
+            <Route path="edit-blog/:_id" element={<UpdateBlog></UpdateBlog>}></Route>
           </Route>
         </Routes>
       </div>

@@ -4,6 +4,7 @@ import {
   DELETE_CONTENT,
   GET_BLOG,
   GET_CONTENT,
+  UPDATE_CONTENT,
 } from "../actiontypes/actiontypes";
 
 export const addHistory = (data) => {
@@ -38,5 +39,12 @@ export const getOneBlogAction = (id) => {
   return {
     type: GET_BLOG,
     payload: id,
+  };
+};
+
+export const updateBlogAction = (data) => {
+  return {
+    type: UPDATE_CONTENT,
+    payload: data,
   };
 };

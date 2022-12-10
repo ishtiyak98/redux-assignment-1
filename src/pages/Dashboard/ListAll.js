@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import deleteBlog from "../../redux/thunk/deleteBlog";
 import fetchBlog from "../../redux/thunk/fetchBlog";
+import getOneBlog from "../../redux/thunk/getOneBlog";
 
 const ListAll = () => {
   const { blogReducer } = useSelector((state) => state);
@@ -41,8 +42,9 @@ const ListAll = () => {
                   <div className="space-x-2 ">
                     <button
                       className="btn btn-primary btn-sm text-white"
-                      onClick={() => {
-                        navigate("/dashboard/edit-blog");
+                      onClick={async () => {
+                        await dispatch(getOneBlog(item._id));
+                        await navigate(`/dashboard/edit-blog/${item._id}`);
                       }}
                     >
                       Edit

@@ -1,22 +1,22 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import Navbar from "../../components/Navbar/Navbar";
 import parser from "html-react-parser";
 import { AiFillLike } from "react-icons/ai";
 import { FaComments } from "react-icons/fa";
 import { FaBookmark } from "react-icons/fa";
+import { useDispatch, useSelector } from "react-redux";
+import getOneBlog from "../../redux/thunk/getOneBlog";
 
 const BlogDetails = () => {
   const { _id } = useParams();
-  const [blogPost, setBlogPost] = useState({});
+  const { blogPost } = useSelector((state) => state.blogReducer);
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    fetch(`http://localhost:5000/post/${_id}`)
-      .then((res) => res.json())
-      .then((data) => setBlogPost(data));
-  }, [_id]);
+    dispatch(getOneBlog(_id));
+  }, [_id, dispatch]);
 
-  console.log(blogPost);
   return (
     <>
       <Navbar></Navbar>

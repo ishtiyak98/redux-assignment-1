@@ -1,10 +1,8 @@
 import React, { useState } from "react";
 import ReactQuill from "react-quill";
-import "react-quill/dist/quill.snow.css";
 import { useDispatch } from "react-redux";
-import addBlog from "../../redux/thunk/addBlog";
 
-const AddBlog = () => {
+const UpdateBlog = () => {
   const [value, setValue] = useState("");
   const dispatch = useDispatch();
   const currentDate = new Date();
@@ -74,15 +72,14 @@ const AddBlog = () => {
       bookmarked,
       tags,
     };
-    
-    dispatch(addBlog(blog));
+
+    //dispatch(addBlog(blog));
     e.target.reset();
   };
-
   return (
     <section className="px-5 py-4 lg:px-24 lg:py-10">
       <h2 className="mb-10 text-4xl font-semibold text-blue-600">
-        Post A Blog
+        Edit A Blog
       </h2>
 
       <form action="" onSubmit={handleSubmit} className="w-[600px]">
@@ -132,4 +129,4 @@ const AddBlog = () => {
   );
 };
 
-export default AddBlog;
+export default UpdateBlog;

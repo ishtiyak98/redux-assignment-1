@@ -12,6 +12,7 @@ const addBlog = (data) => {
 
     const result = await res.json();
     if (result.acknowledged) {
+      window.alert("Blog Posted Successfully");
       dispatch(
         addBlogState({
           _id: data.insertedId,

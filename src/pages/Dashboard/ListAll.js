@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import deleteBlog from "../../redux/thunk/deleteBlog";
 import fetchBlog from "../../redux/thunk/fetchBlog";
 
 const ListAll = () => {
@@ -37,9 +38,24 @@ const ListAll = () => {
                 <td>{item.author}</td>
                 <td>{item.postDate}</td>
                 <td>
-                  <button className="btn btn-error btn-xs" onClick={() => {}}>
-                    delete
-                  </button>
+                  <div className="space-x-2 ">
+                    <button
+                      className="btn btn-primary btn-sm text-white"
+                      onClick={() => {
+                        navigate("/dashboard/edit-blog");
+                      }}
+                    >
+                      Edit
+                    </button>
+                    <button
+                      className="btn btn-error btn-sm text-white"
+                      onClick={() => {
+                        dispatch(deleteBlog(item._id));
+                      }}
+                    >
+                      delete
+                    </button>
+                  </div>
                 </td>
               </tr>
             ))}

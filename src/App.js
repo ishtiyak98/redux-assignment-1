@@ -6,6 +6,7 @@ import BlogDetails from "./pages/BlogDetails/BlogDetails";
 import AddBlog from "./pages/Dashboard/AddBlog";
 import DashHome from "./pages/Dashboard/DashHome";
 import ListAll from "./pages/Dashboard/ListAll";
+import UpdateBlog from "./pages/Dashboard/UpdateBlog";
 import Home from "./pages/Home/Home";
 import ReadingHistory from "./pages/ReadingHistory/ReadingHistory";
 
@@ -30,6 +31,7 @@ function App() {
           <Route path="/dashboard" element={<DashHome></DashHome>}>
             <Route index element={<ListAll></ListAll>}></Route>
             <Route path="add-blog" element={<AddBlog></AddBlog>}></Route>
+            <Route path="edit-blog" element={<UpdateBlog></UpdateBlog>}></Route>
           </Route>
         </Routes>
       </div>

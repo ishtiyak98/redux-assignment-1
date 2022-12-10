@@ -1,11 +1,14 @@
 import {
   ADD_CONTENT,
   ADD_HISTORY,
+  DELETE_CONTENT,
+  GET_BLOG,
   GET_CONTENT,
 } from "../actiontypes/actiontypes";
 
 const initialReducer = {
   blogs: [],
+  blogPost: {},
   blogHistory: [],
 };
 
@@ -19,6 +22,16 @@ const blogReducer = (state = initialReducer, action) => {
     case ADD_CONTENT:
       return {
         ...state,
+      };
+    case DELETE_CONTENT:
+      return {
+        ...state,
+        blogs: state.blogs.filter((item) => item._id !== action.payload),
+      };
+    case GET_BLOG:
+      return {
+        ...state,
+        blogPost: { ...action.payload },
       };
     case ADD_HISTORY:
       const doubleCheck = state.blogHistory.find(
